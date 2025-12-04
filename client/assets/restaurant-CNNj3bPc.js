@@ -1,0 +1,1 @@
+import{w as e,p as t}from"./chunk-4WY6JWTD-CgRXpLqU.js";function o({}){return[{title:"New React Router App"},{name:"description",content:"Welcome to React Router!"}]}const a=e(function(){return t.jsx(t.Fragment,{children:"Welcome to the Restaurant Page"})});export{a as default,o as meta};
