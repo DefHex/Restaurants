@@ -73,3 +73,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     </main>
   );
 }
+
+export function HydrateFallback(_: Route.HydrateFallbackProps) {
+  return (
+    <div className="pt-16 p-4 container mx-auto">
+      <h1>Loading...</h1>
+    </div>
+  );
+}

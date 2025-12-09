@@ -8,5 +8,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function cafe() {
-    return <>Welcome to the Cafe Page</>;
+  return<>
+    <div className="pt-16 p-4 container mx-auto">
+      <h1 className="text-3xl font-bold mb-4">Welcome to the Cafe Page</h1>
+    </div>
+    </>;
 }

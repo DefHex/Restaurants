@@ -8,5 +8,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function restaurant() {
-  return <>Welcome to the Restaurant Page</>;
+  return <>
+    <div className="pt-16 p-4 container mx-auto">
+      <h1 className="text-3xl font-bold mb-4">Welcome to the Restaurant Page</h1>
+    </div>
+    </>;
 }
