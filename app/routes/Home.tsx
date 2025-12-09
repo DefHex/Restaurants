@@ -13,7 +13,7 @@ export default function Home() {
   let navigate = useNavigate();
   return<>
     <div className="pt-16 p-4 container mx-auto dark:text-white dark:bg-black">
-      <h1 className="text-3xl font-bold mb-4  ">Welcome to the Restaurant App!</h1>
+      <h1 className="text-3xl font-bold mb-4">Welcome to the Restaurant App!</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <CardContainer>
           <CardItem translateZ="150" className="w-full mt-4">
