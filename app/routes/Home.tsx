@@ -1,7 +1,7 @@
 import { CardContainer, CardItem } from "components/ui/3d-card";
 import type { Route } from "./+types/Home";
-import { Link ,useNavigate} from "react-router";
- 
+import { Link, useNavigate } from "react-router";
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Home" },
@@ -13,7 +13,8 @@ export default function Home() {
   let navigate = useNavigate();
   return<>
     <div className="pt-16 p-4 container mx-auto dark:text-white dark:bg-black">
-      <h1 className="text-3xl font-bold mb-4">Welcome to the Restaurant App!</h1>
+      <h1 className="text-3xl font-bold mb-4">Welcome</h1>
+      <h3 className="text-lg mb-8">Choose a place to visit:</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <CardContainer>
           <CardItem translateZ="150" className="w-full mt-4">
