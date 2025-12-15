@@ -5,7 +5,7 @@ export function meta({}: Route.MetaArgs) {
   return [{ title: "Buffet" }, { name: "description", content: "Buffet" }];
 }
 
-type Point = { x: number; y: number };
+type Point = { x: number; y: number }; // tuple of positions
 
 type MenuItem = {
   id: number;
@@ -15,60 +15,140 @@ type MenuItem = {
   description: string;
   price: string;
   type: string;
-};
+}; // type of the objects
+
+const rootFontSize = parseFloat(
+  getComputedStyle(document.documentElement).fontSize
+);
+
+const menuItems: MenuItem[] = [
+  {
+    id: 1,
+    name: "Bolognese",
+    path: "./bolognese.png",
+    selected: false,
+    description:
+      "Creamy pasta with rich tomato meat sauce and Parmesan cheese.",
+    price: "€12.99",
+    type: "pasta",
+  },
+  {
+    id: 2,
+    name: "Margherita Pizza",
+    path: "./margherita.png",
+    selected: false,
+    description: "Classic pizza with fresh mozzarella, tomatoes, and basil.",
+    price: "€10.99",
+    type: "pizza",
+  },
+  {
+    id: 3,
+    name: "Pasta",
+    path: "./pasta.png",
+    selected: false,
+    description: "Creamy pasta with egg, and Parmesan cheese.",
+    price: "€11.99",
+    type: "pasta",
+  },
+  {
+    id: 4,
+    name: "Cesar Salad",
+    path: "./cesar.png",
+    selected: false,
+    description:
+      "Crisp romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.",
+    price: "€8.99",
+    type: "salad",
+  },
+  {
+    id: 5,
+    name: "Cheesy pizza",
+    path: "./cheese.png",
+    selected: false,
+    description:
+      "Classic cheese pizza with a blend of mozzarella and cheddar cheeses.",
+    price: "€9.99",
+    type: "pizza",
+  },
+  {
+    id: 6,
+    name: "Ice Cream",
+    path: "./ice-cream.png",
+    selected: false,
+    description: "Ice cream mix of flavors.",
+    price: "€5.99",
+    type: "dessert",
+  },
+  {
+    id: 7,
+    name: "Lasagna",
+    path: "./lasagna.png",
+    selected: false,
+    description:
+      "Delicious layers of pasta, meat, and cheese baked to perfection.",
+    price: "€13.99",
+    type: "pasta",
+  },
+  {
+    id: 8,
+    name: "Mozzarella",
+    path: "./mozzarella.png",
+    selected: false,
+    description: "Fresh mozzarella cheese served with tomatoes and basil.",
+    price: "€7.99",
+    type: "appetizer",
+  },
+  {
+    id: 9,
+    name: "Mushroom pizza",
+    path: "./mushroom.png",
+    selected: false,
+    description:
+      "Savory mushroom pizza topped with a blend of cheeses and herbs.",
+    price: "€11.99",
+    type: "pizza",
+  },
+  {
+    id: 10,
+    name: "Salami pizza",
+    path: "./salami.png",
+    selected: false,
+    description: "Spicy salami pizza with a crispy crust and melted cheese.",
+    price: "€12.99",
+    type: "pizza",
+  },
+  {
+    id: 11,
+    name: "Tiramisu",
+    path: "./tiramisu.png",
+    selected: false,
+    description:
+      "Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cheese.",
+    price: "€6.99",
+    type: "dessert",
+  },
+  {
+    id: 12,
+    name: "Vegetarian pizza",
+    path: "./veggie.png",
+    selected: false,
+    description:
+      "Delicious vegetarian pizza topped with fresh vegetables and mozzarella cheese.",
+    price: "€10.99",
+    type: "pizza",
+  },
+];
 
 export default function MagnifyingCircles() {
+  const [dragStart, setDragStart] = useState<Point>({ x: 0, y: 0 });
   const [offset, setOffset] = useState<Point>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [dragStart, setDragStart] = useState<Point>({ x: 0, y: 0 });
 
-  const rows = 12;
-  const cols = 12;
+  const rows = 4;
+  const cols = 5;
   const baseSize = 120; // slightly bigger so image fits
-  const maxScale = 3;
-  const spacing = 200;
-
-  const dishColors: string[] = [
-    "#FEF3C7",
-    "#DBEAFE",
-    "#FCE7F3",
-    "#D1FAE5",
-    "#FED7AA",
-    "#E0E7FF",
-    "#FECACA",
-    "#BAE6FD",
-    "#FDE68A",
-    "#DDD6FE",
-    "#FCA5A5",
-    "#A7F3D0",
-    "#FCD34D",
-    "#C7D2FE",
-    "#F87171",
-    "#6EE7B7",
-  ];
-
-  const menuItems: MenuItem[] = [
-    {
-      id: 1,
-      name: "Bolognese",
-      path: "./bolognese.png",
-      selected: false,
-      description:
-        "Creamy pasta with rich tomato meat sauce and Parmesan cheese.",
-      price: "€12.99",
-      type: "pasta",
-    },
-    {
-      id: 2,
-      name: "Margherita Pizza",
-      path: "./margherita.png",
-      selected: false,
-      description: "Classic pizza with fresh mozzarella, tomatoes, and basil.",
-      price: "€10.99",
-      type: "pizza",
-    },
-    // ... keep the rest of your items exactly as-is
-  ];
+  const maxScale = 2;
+  const spacing = 220;
 
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
     setIsDragging(true);
@@ -96,7 +176,7 @@ export default function MagnifyingCircles() {
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     const maxDistance = 350;
-    const normalized = Math.min(distance / maxDistance, 1);
+    const normalized = Math.min(distance / maxDistance, 1.3);
 
     return maxScale - normalized * (maxScale - 0.3);
   };
@@ -115,7 +195,6 @@ export default function MagnifyingCircles() {
         for (let col = 0; col < cols; col++) {
           const x = col * spacing + wrappedOffsetX + gridX * gridWidth;
           const y = row * spacing + wrappedOffsetY + gridY * gridHeight;
-
           if (
             x > -200 &&
             x < window.innerWidth + 200 &&
@@ -126,7 +205,6 @@ export default function MagnifyingCircles() {
             const index = row * cols + col;
 
             const item = menuItems[index % menuItems.length];
-            const color = dishColors[index % dishColors.length];
 
             circles.push(
               <div
@@ -141,18 +219,9 @@ export default function MagnifyingCircles() {
                 }}
               >
                 <div
-                  className="w-full h-full rounded-full shadow-xl border-2 border-gray-300 overflow-hidden flex flex-col items-center justify-center"
-                  style={{ backgroundColor: color }}
+                  className="w-full h-full rounded-full overflow-hidden flex flex-col items-center justify-center bg-no-repeat bg-contain"
+                  style={{ backgroundImage: `url(${item.path})` }}
                 >
-                  {/* image */}
-                  <img
-                    src={item.path}
-                    alt={item.name}
-                    className="w-14 h-14 object-contain"
-                    draggable={false}
-                  />
-
-                  {/* name + price */}
                   <div className="mt-1 text-center px-2 leading-tight">
                     <div className="text-xs font-semibold">{item.name}</div>
                     <div className="text-[11px] opacity-80">{item.price}</div>
@@ -176,10 +245,6 @@ export default function MagnifyingCircles() {
       onMouseLeave={handleMouseUp}
     >
       {circles}
-
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm px-6 py-3 rounded-full text-white text-sm pointer-events-none">
-        Drag to explore • Infinite scroll 🌍
-      </div>
 
       <div
         className="absolute top-1/2 left-1/2 w-2 h-2 bg-red-500/30 rounded-full pointer-events-none"
