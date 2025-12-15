@@ -145,7 +145,7 @@ export default function MagnifyingCircles() {
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
   const rows = 4;
-  const cols = 5;
+  const cols = 7;
   const baseSize = 120; // slightly bigger so image fits
   const maxScale = 2;
   const spacing = 220;
@@ -167,6 +167,29 @@ export default function MagnifyingCircles() {
 
   const handleMouseUp = (): void => setIsDragging(false);
 
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>): void => {
+    setIsDragging(true);
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>): void => {
+    if (!isDragging) return;
+
+    const deltaX = e.clientX - dragStart.x;
+    const deltaY = e.clientY - dragStart.y;
+
+    setOffset((prev) => ({
+      x: prev.x + deltaX,
+      y: prev.y + deltaY,
+    }));
+
+    setDragStart({ x: e.clientX, y: e.clientY });
+  };
+
+  const handlePointerUp = (): void => {
+    setIsDragging(false);
+  };
+
   const getCircleScale = (x: number, y: number): number => {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
@@ -175,10 +198,10 @@ export default function MagnifyingCircles() {
     const dy = y - centerY;
     const distance = Math.sqrt(dx * dx + dy * dy);
 
-    const maxDistance = 350;
-    const normalized = Math.min(distance / maxDistance, 1.3);
+    const maxDistance = 0.45 * window.innerWidth;
+    const normalized = Math.min(distance / maxDistance, 1);
 
-    return maxScale - normalized * (maxScale - 0.3);
+    return maxScale * (1 - normalized);
   };
 
   const circles = [];
@@ -221,12 +244,7 @@ export default function MagnifyingCircles() {
                 <div
                   className="w-full h-full rounded-full overflow-hidden flex flex-col items-center justify-center bg-no-repeat bg-contain"
                   style={{ backgroundImage: `url(${item.path})` }}
-                >
-                  <div className="mt-1 text-center px-2 leading-tight">
-                    <div className="text-xs font-semibold">{item.name}</div>
-                    <div className="text-[11px] opacity-80">{item.price}</div>
-                  </div>
-                </div>
+                ></div>
               </div>
             );
           }
@@ -237,12 +255,12 @@ export default function MagnifyingCircles() {
 
   return (
     <div
-      className="w-full h-screen bg-white overflow-hidden relative select-none"
+      className="w-full h-screen bg-white overflow-hidden relative select-none touch-none"
       style={{ cursor: isDragging ? "grabbing" : "grab" }}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
     >
       {circles}
 
