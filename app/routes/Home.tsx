@@ -1,7 +1,7 @@
 import { CardContainer, CardItem } from "components/ui/3d-card";
 import type { Route } from "./+types/Home";
-import { Link ,useNavigate} from "react-router";
- 
+import {useNavigate } from "react-router";
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Home" },
@@ -11,9 +11,10 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   let navigate = useNavigate();
-  return<>
+  return(
     <div className="pt-16 p-4 container mx-auto dark:text-white dark:bg-black">
-      <h1 className="text-3xl font-bold mb-4">Welcome to the Restaurant App!</h1>
+      <h1 className="text-3xl font-bold mb-4">Welcome</h1>
+      <h3 className="text-lg mb-8">Choose a place to visit:</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <CardContainer>
           <CardItem translateZ="150" className="w-full mt-4">
@@ -21,7 +22,7 @@ export default function Home() {
               src="https://images.stockcake.com/public/a/5/b/a5b42388-78ff-405a-b246-acc81409123a_large/neon-lit-nightclub-interior-stockcake.jpg"
               className="max-h-100 max-w-max w-full object-cover rounded-xl group-hover/card:shadow-xl"
               alt="Cafe / Bar and seating area of a nightclub with neon lights"
-              onClick={() => {navigate("/cafe")}}
+              onClick={() => {navigate("/bar")}}
             />
           </CardItem>
         </CardContainer>
@@ -39,5 +40,5 @@ export default function Home() {
           </CardContainer>
         </div>
     </div>
-    </>
+  );
 }
