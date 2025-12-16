@@ -149,9 +149,7 @@ export default function restaurant() {
     setZoomLevel((prevZoom) => Math.max(0.5, prevZoom - 0.1));
   }
   return (
-    <div
-      className="min-h-screen bg-red-500 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] p-8"
-    >
+    <div className="min-h-screen bg-red-500 bg-[url('https://www.transparenttextures.com/patterns/black-linen.png')] p-8">
       <div className="container mx-auto text-center">
         <h1 className="text-5xl font-bold mb-2 text-white font-serif shadow-lg">
           Our Menu
@@ -165,7 +163,10 @@ export default function restaurant() {
               <div
                 className="relative transition-transform duration-900 group-hover:rotate-z-360 md:group-hover:scale-140 cursor-pointer transform-style-preserve-3d"
                 onClick={() => toggleMenuItemSelection(item.id)}
-                style={{ width: `${288 * zoomLevel}px`, height: `${288 * zoomLevel}px` }}
+                style={{
+                  width: `${288 * zoomLevel}px`,
+                  height: `${288 * zoomLevel}px`,
+                }}
               >
                 {/* Front of the plate (the food) */}
                 {!selectedMenuItem.find((menuItem) => menuItem.id === item.id)
@@ -182,7 +183,7 @@ export default function restaurant() {
                     <h2 className="text-2xl font-bold text-slate-800 mb-2">
                       {item.name}
                     </h2>
-                      <p className="text-slate-600">{item.description}</p>
+                    <p className="text-slate-600">{item.description}</p>
                     <h3 className="text-2xl font-bold text-slate-800 mb-2">
                       {item.price}
                     </h3>
