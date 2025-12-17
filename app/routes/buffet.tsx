@@ -1,80 +1,95 @@
 import React, { useState } from "react";
 import type { Route } from "./+types/Home";
-import {menuItems} from "components/menuItems";
+import { menuItems, buffetItems } from "components/menuItems";
+import { del } from "motion/react-client";
+
+type Point = { x: number; y: number };
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Buffet" }, { name: "description", content: "Buffet" }];
 }
 
-type Point = { x: number; y: number }; // tuple of positions
+const widthRatio = 0.4; // width ratio of focus area
+const heightRatio = 0.4; // height ratio of the focus area
+const cornerRadius = 100; // corner radius of the focus area
+const fallOff = 100;
+const maxScale = 1;
 
-const rootFontSize = parseFloat(
-  getComputedStyle(document.documentElement).fontSize
-);
+const rows = 4;
+const cols = 5;
+const baseSize = 120;
+const spacing = 220;
 
 export default function MagnifyingCircles() {
-  const [dragStart, setDragStart] = useState<Point>({ x: 0, y: 0 });
-  const [offset, setOffset] = useState<Point>({ x: 0, y: 0 });
+  const [origin, setOrigin] = useState<Point>({ x: 0, y: 0 }); // top left of the screen
+  const [dragStartPoint, setDragStartPoint] = useState<Point>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
-  const rows = 4;
-  const cols = 7;
-  const baseSize = 120; // slightly bigger so image fits
-  const maxScale = 2;
-  const spacing = 220;
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
-    setIsDragging(true);
-    setDragStart({ x: e.clientX, y: e.clientY });
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
-    if (!isDragging) return;
-
-    const deltaX = e.clientX - dragStart.x;
-    const deltaY = e.clientY - dragStart.y;
-
-    setOffset((prev) => ({ x: prev.x + deltaX, y: prev.y + deltaY }));
-    setDragStart({ x: e.clientX, y: e.clientY });
-  };
-
-  const handleMouseUp = (): void => setIsDragging(false);
-
+  // handles when mouse is clicked/screen is touched
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>): void => {
+    // set state -> dragging
     setIsDragging(true);
-    setDragStart({ x: e.clientX, y: e.clientY });
+    // get current position
+    const currentX = e.clientX;
+    const currentY = e.clientY;
+    setDragStartPoint({ x: currentX, y: currentY });
   };
 
+  // handles when mouse / finger is dragged
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>): void => {
+    // ignore mouse/finger movement when not dragging
     if (!isDragging) return;
-
-    const deltaX = e.clientX - dragStart.x;
-    const deltaY = e.clientY - dragStart.y;
-
-    setOffset((prev) => ({
-      x: prev.x + deltaX,
-      y: prev.y + deltaY,
+    // get current position
+    const currentX = e.clientX;
+    const currentY = e.clientY;
+    // get delta vector
+    const delta: Point = {
+      x: currentX - dragStartPoint.x,
+      y: currentY - dragStartPoint.y,
+    };
+    // update origin position
+    setOrigin((old) => ({
+      x: old.x + delta.x,
+      y: old.y + delta.y,
     }));
-
-    setDragStart({ x: e.clientX, y: e.clientY });
+    // update drag start position
+    setDragStartPoint({ x: currentX, y: currentY });
   };
 
+  // handles when mouse is not clicked / finger is not touched
   const handlePointerUp = (): void => {
+    // set state -> not dragging
     setIsDragging(false);
   };
 
-  const getCircleScale = (x: number, y: number): number => {
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+  // calculates dish size relative to screen center
+  const getCircleScale = (p: Point): number => {
+    // get the screen center
+    const center: Point = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+    };
+    // get delta from center
+    const delta: Point = {
+      x: p.x - center.x,
+      y: p.y - center.y,
+    };
+    // main radiants of grid
+    const rx = window.innerWidth * widthRatio;
+    const ry = window.innerHeight * heightRatio;
 
-    const dx = x - centerX;
-    const dy = y - centerY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+    // formula of rounded rectangle
+    const dx = Math.abs(delta.x) - (rx - cornerRadius);
+    const dy = Math.abs(delta.y) - (ry - cornerRadius);
+    const outsideX = Math.max(dx, 0);
+    const outsideY = Math.max(dy, 0);
+    const outsideD = Math.sqrt(outsideX ** 2 + outsideY ** 2);
+    const insideD = Math.min(Math.max(dx, dy), 0);
+    const distance = outsideD + insideD;
 
-    const maxDistance = 0.45 * window.innerWidth;
-    const normalized = Math.min(distance / maxDistance, 1);
+    const normalized = Math.min(Math.max(distance / fallOff, 0), 1);
 
-    return maxScale * (1 - normalized);
+    return maxScale * (1 - normalized) ** 2;
   };
 
   const circles = [];
@@ -82,40 +97,42 @@ export default function MagnifyingCircles() {
   const gridWidth = cols * spacing;
   const gridHeight = rows * spacing;
 
-  const wrappedOffsetX = ((offset.x % gridWidth) + gridWidth) % gridWidth;
-  const wrappedOffsetY = ((offset.y % gridHeight) + gridHeight) % gridHeight;
+  const wrappedOffsetX = ((origin.x % gridWidth) + gridWidth) % gridWidth;
+  const wrappedOffsetY = ((origin.y % gridHeight) + gridHeight) % gridHeight;
 
   for (let gridX = -1; gridX <= 1; gridX++) {
     for (let gridY = -1; gridY <= 1; gridY++) {
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-          const x = col * spacing + wrappedOffsetX + gridX * gridWidth;
-          const y = row * spacing + wrappedOffsetY + gridY * gridHeight;
+          const worldPos: Point = {
+            x: col * spacing + wrappedOffsetX + gridX * gridWidth,
+            y: row * spacing + wrappedOffsetY + gridY * gridHeight,
+          };
           if (
-            x > -200 &&
-            x < window.innerWidth + 200 &&
-            y > -200 &&
-            y < window.innerHeight + 200
+            worldPos.x > -200 &&
+            worldPos.x < window.innerWidth + 200 &&
+            worldPos.y > -200 &&
+            worldPos.y < window.innerHeight + 200
           ) {
-            const scale = getCircleScale(x, y);
+            const scale = getCircleScale(worldPos);
             const index = row * cols + col;
 
-            const item = menuItems[index % menuItems.length];
+            const item = buffetItems[index % buffetItems.length];
 
             circles.push(
               <div
                 key={`${gridX}-${gridY}-${row}-${col}`}
                 className="absolute transition-transform duration-100 ease-out"
                 style={{
-                  left: `${x}px`,
-                  top: `${y}px`,
+                  left: `${worldPos.x}px`,
+                  top: `${worldPos.y}px`,
                   transform: `translate(-50%, -50%) scale(${scale})`,
                   width: `${baseSize}px`,
                   height: `${baseSize}px`,
                 }}
               >
                 <div
-                  className="w-full h-full rounded-full overflow-hidden flex flex-col items-center justify-center bg-no-repeat bg-contain"
+                  className="w-full h-full flex flex-col items-center justify-center bg-no-repeat bg-contain"
                   style={{ backgroundImage: `url(${item.path})` }}
                 ></div>
               </div>
