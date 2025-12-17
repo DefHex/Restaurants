@@ -6,7 +6,7 @@ export interface MenuItemType {
   description: string;
   price: string;
   type: string;
-};
+}
 
 export const menuItems: MenuItemType[] = [
   {
@@ -123,5 +123,217 @@ export const menuItems: MenuItemType[] = [
       "Delicious vegetarian pizza topped with fresh vegetables and mozzarella cheese.",
     price: "€10.99",
     type: "pizza",
+  },
+];
+
+export const buffetItems: MenuItemType[] = [
+  {
+    id: 1,
+    name: "Brat Wurst",
+    path: "./buffetItems/bratWurst.png",
+    selected: false,
+    description:
+      "Traditional German bratwurst grilled to perfection, juicy and flavorful.",
+    price: "€7.99",
+    type: "buffet",
+  },
+  {
+    id: 2,
+    name: "Dumplings",
+    path: "./buffetItems/dumplings.png",
+    selected: false,
+    description: "Soft and fluffy dumplings served as a classic comfort food.",
+    price: "€5.99",
+    type: "buffet",
+  },
+  {
+    id: 3,
+    name: "English Breakfast",
+    path: "./buffetItems/englishBreakFast.png",
+    selected: false,
+    description:
+      "Hearty English breakfast with eggs, sausages, beans, and toast.",
+    price: "€9.49",
+    type: "buffet",
+  },
+  {
+    id: 4,
+    name: "Lasagna",
+    path: "./buffetItems/lasagna.png",
+    selected: false,
+    description:
+      "Layers of pasta, rich meat sauce, and creamy béchamel baked golden.",
+    price: "€8.99",
+    type: "buffet",
+  },
+  {
+    id: 5,
+    name: "Olivier Salad",
+    path: "./buffetItems/olivierSalad.png",
+    selected: false,
+    description:
+      "Classic Olivier salad with potatoes, vegetables, and creamy dressing.",
+    price: "€4.99",
+    type: "buffet",
+  },
+  {
+    id: 6,
+    name: "Penne Bolognese",
+    path: "./buffetItems/penneBolognese.png",
+    selected: false,
+    description:
+      "Penne pasta served with a rich and slow-cooked Bolognese sauce.",
+    price: "€8.49",
+    type: "buffet",
+  },
+  {
+    id: 7,
+    name: "Penne Pesto",
+    path: "./buffetItems/pennePesto.png",
+    selected: false,
+    description:
+      "Penne pasta tossed in fresh basil pesto with olive oil and parmesan.",
+    price: "€7.99",
+    type: "buffet",
+  },
+  {
+    id: 8,
+    name: "Pizza Fungi",
+    path: "./buffetItems/pizzaFungi.png",
+    selected: false,
+    description:
+      "Classic pizza topped with fresh mushrooms and melted mozzarella.",
+    price: "€8.99",
+    type: "buffet",
+  },
+  {
+    id: 9,
+    name: "Pizza Margarita",
+    path: "./buffetItems/pizzaMargarita.png",
+    selected: false,
+    description:
+      "Traditional Margherita pizza with tomato sauce, mozzarella, and basil.",
+    price: "€8.49",
+    type: "buffet",
+  },
+  {
+    id: 10,
+    name: "Pizza Salami",
+    path: "./buffetItems/pizzaSalami.png",
+    selected: false,
+    description: "Savory pizza topped with spicy salami and melted cheese.",
+    price: "€9.49",
+    type: "buffet",
+  },
+  {
+    id: 11,
+    name: "Poke Bowl Chicken",
+    path: "./buffetItems/pokeBowlChicken.png",
+    selected: false,
+    description:
+      "Fresh poke bowl with marinated chicken, rice, and vegetables.",
+    price: "€9.99",
+    type: "buffet",
+  },
+  {
+    id: 12,
+    name: "Poke Bowl Thuna",
+    path: "./buffetItems/pokeBowlThuna.png",
+    selected: false,
+    description: "Light poke bowl with fresh tuna, rice, and sesame flavors.",
+    price: "€10.49",
+    type: "buffet",
+  },
+  {
+    id: 13,
+    name: "Roasted Salmon",
+    path: "./buffetItems/roastedSalmon.png",
+    selected: false,
+    description: "Oven-roasted salmon fillet with herbs and lemon.",
+    price: "€11.99",
+    type: "buffet",
+  },
+  {
+    id: 14,
+    name: "Salad",
+    path: "./buffetItems/salad.png",
+    selected: false,
+    description:
+      "Fresh mixed salad with seasonal vegetables and light dressing.",
+    price: "€4.49",
+    type: "buffet",
+  },
+  {
+    id: 15,
+    name: "Schnitzel",
+    path: "./buffetItems/schnitzel.png",
+    selected: false,
+    description: "Crispy breaded schnitzel fried until golden and tender.",
+    price: "€10.99",
+    type: "buffet",
+  },
+  {
+    id: 16,
+    name: "Schwarma",
+    path: "./buffetItems/schwarma.png",
+    selected: false,
+    description: "Spiced shawarma-style meat served juicy and aromatic.",
+    price: "€9.49",
+    type: "buffet",
+  },
+  {
+    id: 17,
+    name: "Spaghetti Alassasina",
+    path: "./buffetItems/spagettiAlassasina.png",
+    selected: false,
+    description:
+      "Spaghetti cooked directly in spicy tomato sauce for deep flavor.",
+    price: "€8.99",
+    type: "buffet",
+  },
+  {
+    id: 18,
+    name: "Steak",
+    path: "./buffetItems/steak.png",
+    selected: false,
+    description: "Grilled steak cooked to perfection with a juicy center.",
+    price: "€13.99",
+    type: "buffet",
+  },
+  {
+    id: 19,
+    name: "Steak 2",
+    path: "./buffetItems/steak2.png",
+    selected: false,
+    description: "Tender steak cut served with rich natural juices.",
+    price: "€14.49",
+    type: "buffet",
+  },
+  {
+    id: 20,
+    name: "Sushi",
+    path: "./buffetItems/sushi.png",
+    selected: false,
+    description: "Assorted sushi selection with fresh fish and rice.",
+    price: "€12.99",
+    type: "buffet",
+  },
+  {
+    id: 21,
+    name: "Tacos",
+    path: "./buffetItems/tacos.png",
+    selected: false,
+    description: "Mexican-style tacos filled with seasoned meat and toppings.",
+    price: "€7.49",
+    type: "buffet",
+  },
+  {
+    id: 22,
+    name: "Tartar Soup",
+    path: "./buffetItems/tartarSoup.png",
+    selected: false,
+    description: "Traditional hearty soup with rich spices and vegetables.",
+    price: "€5.99",
+    type: "buffet",
   },
 ];
