@@ -294,15 +294,6 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 18,
     name: "Steak",
-    path: "./buffetItems/steak.png",
-    selected: false,
-    description: "Grilled steak cooked to perfection with a juicy center.",
-    price: "€13.99",
-    type: "buffet",
-  },
-  {
-    id: 19,
-    name: "Steak 2",
     path: "./buffetItems/steak2.png",
     selected: false,
     description: "Tender steak cut served with rich natural juices.",
@@ -310,7 +301,7 @@ export const buffetItems: MenuItemType[] = [
     type: "buffet",
   },
   {
-    id: 20,
+    id: 19,
     name: "Sushi",
     path: "./buffetItems/sushi.png",
     selected: false,
