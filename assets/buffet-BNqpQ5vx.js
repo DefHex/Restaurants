@@ -21,6 +21,7 @@ import{a as x,p as e,w as H}from"./chunk-JMJ3UQ3L-CXPOUM4N.js";import{b}from"./m
                 p-2 sm:p-4 md:p-6
               `,children:e.jsx("img",{src:s.path,alt:s.name,className:`
                   w-full h-full object-cover
+                  animate-spin-slow
                   sm:object-contain
                   transition duration-300 ease-in-out 
                   hover:-translate-y-1 hover:scale-110
