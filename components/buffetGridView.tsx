@@ -52,6 +52,7 @@ export default function BuffetGridView() {
                 alt={item.name}
                 className="
                   w-full h-full object-cover
+                  animate-spin-slow
                   sm:object-contain
                   transition duration-300 ease-in-out 
                   hover:-translate-y-1 hover:scale-110
