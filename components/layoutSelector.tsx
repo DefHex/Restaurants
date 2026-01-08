@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { View, Table } from "lucide-react";
 
 type layoutSelectorProp = {
   setScreenMode: (index: number) => void;
@@ -19,23 +20,23 @@ export default function LayoutSelector({
       <div className="w-full flex flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 p-2 sm:p-3 md:p-4 backdrop-blur-xl bg-white/10 rounded-3xl border border-white/20 shadow-2xl">
         <button
           type="button"
-          className={`flex-1 h-14 w-20 rounded-2xl border border-white/20 shadow-lg
+          className={`flex flex-col items-center justify-center h-14 w-20 rounded-2xl border border-white/20 shadow-lg
             ${selectedButton === 1 ? "bg-white text-blue-800" : "backdrop-blur-sm bg-white/10 text-black"}
 `}
           onClick={() => {
             selectItem(1);
           }}
         >
-          One
+          <View />
         </button>
         <button
           type="button"
-          className={`flex-1 h-14 w-20 rounded-2xl border border-white/20 shadow-lg
+          className={`flex flex-col items-center justify-center h-14 w-20 rounded-2xl border border-white/20 shadow-lg
             ${selectedButton === 2 ? "bg-white  text-blue-800" : "backdrop-blur-sm bg-white/10 text-black"}
             `}
           onClick={() => selectItem(2)}
         >
-          Two
+          <Table />
         </button>
       </div>
     </div>

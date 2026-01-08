@@ -141,7 +141,7 @@ export default function BuffetMagnifyView() {
 
   return (
     <div
-      className="w-full h-screen bg-white overflow-hidden relative select-none touch-none"
+      className="w-full h-screen overflow-hidden relative select-none touch-none"
       style={{ cursor: isDragging ? "grabbing" : "grab" }}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -149,11 +149,6 @@ export default function BuffetMagnifyView() {
       onPointerLeave={handlePointerUp}
     >
       {circles}
-
-      <div
-        className="absolute top-1/2 left-1/2 w-2 h-2 bg-red-500/30 rounded-full pointer-events-none"
-        style={{ transform: "translate(-50%, -50%)" }}
-      ></div>
     </div>
   );
 }
