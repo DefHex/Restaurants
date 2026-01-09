@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { buffetItems } from "./menuItems";
 
 export default function BuffetGridView() {
@@ -53,7 +52,7 @@ export default function BuffetGridView() {
                 className="
                   w-full h-full object-cover
                   sm:object-contain
-                  transition duration-300 ease-in-out 
+                  transition duration-300 ease-in-out
                   hover:-translate-y-1 hover:scale-110
                 "
               />
