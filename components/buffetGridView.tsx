@@ -49,8 +49,6 @@ export default function BuffetGridView() {
                 alt={item.name}
                 loading="lazy"
                 decoding="async"
-                loading="lazy"
-                decoding="async"
                 className="
                   w-full h-full object-cover
                   sm:object-contain
