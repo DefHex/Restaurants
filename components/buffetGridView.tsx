@@ -20,13 +20,12 @@ export default function BuffetGridView() {
             `}
           >
             <div></div>
-            {/* TEXT — ALWAYS BIG */}
+
             <div
               className="
                 [grid-area:text]
                 col-span-2
-                backdrop-blur-xl bg-white/10
-                rounded-3xl border border-white/20 shadow-2xl
+                rounded-3xl border border-white/20 
                 p-6 flex flex-col items-center
               "
             >
@@ -35,14 +34,12 @@ export default function BuffetGridView() {
               <h3 className="leading-relaxed">{item.price}</h3>
             </div>
 
-            {/* IMAGE — ALWAYS SMALL */}
             <div
               className="
                 flex items-center justify-center
                 w-full h-full
                 [grid-area:img]
-                backdrop-blur-xl bg-white/10
-                rounded-3xl border border-white/20 shadow-2xl
+                rounded-3xl border border-white/20 
                 overflow-hidden
                 p-2 sm:p-4 md:p-6
               "
@@ -50,12 +47,11 @@ export default function BuffetGridView() {
               <img
                 src={item.path}
                 alt={item.name}
+                loading="lazy"
+                decoding="async"
                 className="
                   w-full h-full object-cover
-                  animate-spin-slow
                   sm:object-contain
-                  transition duration-300 ease-in-out 
-                  hover:-translate-y-1 hover:scale-110
                 "
               />
             </div>

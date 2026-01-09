@@ -63,7 +63,9 @@ const menuItems = [
 
 export default function bar() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [selectedDrink, setSelectedDrink] = useState<(typeof menuItems)[0] | null>(null);
+  const [selectedDrink, setSelectedDrink] = useState<
+    (typeof menuItems)[0] | null
+  >(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const extendedMenuItems = [
@@ -122,9 +124,15 @@ export default function bar() {
                 </DialogDescription>
               </DialogHeader>
               <div className="flex justify-center">
-                <img src={selectedDrink.path} alt={selectedDrink.name} className="h-64 w-auto object-cover rounded-lg"/>
+                <img
+                  src={selectedDrink.path}
+                  alt={selectedDrink.name}
+                  className="h-64 w-auto object-cover rounded-lg"
+                />
               </div>
-              <p className="text-center text-lg font-semibold">{selectedDrink.price}</p>
+              <p className="text-center text-lg font-semibold">
+                {selectedDrink.price}
+              </p>
               <DialogFooter>
                 <button onClick={() => setIsDialogOpen(false)}>Close</button>
               </DialogFooter>

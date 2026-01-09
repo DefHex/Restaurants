@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col justify-center pt-16 p-4 mx-auto dark:text-white dark:bg-black">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <CardContainer className="inter-var">
+        <CardContainer>
           <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/5 border-black/10 w-auto sm:w-120 h-auto rounded-xl p-6 border  ">
             <CardItem
               translateZ="50"
@@ -53,7 +53,7 @@ export default function Home() {
           </CardBody>
         </CardContainer>
 
-        <CardContainer className="inter-var">
+        <CardContainer>
           <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/5 border-black/10 w-auto sm:w-120 h-auto rounded-xl p-6 border">
             <CardItem
               translateZ="50"
@@ -92,7 +92,7 @@ export default function Home() {
           </CardBody>
         </CardContainer>
 
-        <CardContainer className="inter-var">
+        <CardContainer>
           <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl ddark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/5 border-black/10 w-auto sm:w-120 h-auto rounded-xl p-6 border  ">
             <CardItem
               translateZ="50"
