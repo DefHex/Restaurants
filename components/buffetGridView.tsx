@@ -20,6 +20,7 @@ export default function BuffetGridView() {
           >
             <div></div>
 
+
             <div
               className="
                 [grid-area:text]
@@ -46,6 +47,8 @@ export default function BuffetGridView() {
               <img
                 src={item.path}
                 alt={item.name}
+                loading="lazy"
+                decoding="async"
                 loading="lazy"
                 decoding="async"
                 className="
