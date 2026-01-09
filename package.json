@@ -13,13 +13,15 @@
     "postdeploy": "npm run deploy"
   },
   "dependencies": {
-    "@react-router/node": "^7.11.0",
-    "@react-router/serve": "^7.9.2",
+    "@gsap/react": "^2.1.2",
+    "@react-router/node": "^7.9.2",
+    "@react-router/serve": "^7.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap": "^3.14.2",
     "isbot": "^5.1.31",
-    "lucide-react": "^0.561.0",
-    "motion": "^12.23.26",
+    "lucide-react": "^0.562.0",
+    "motion": "^12.25.0",
     "radix-ui": "^1.4.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
@@ -27,7 +29,7 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@react-router/dev": "^7.11.0",
+    "@react-router/dev": "^7.12.0",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^25",
     "@types/react": "^19.1.13",
@@ -36,7 +38,7 @@
     "tailwindcss": "^4.1.13",
     "tw-animate-css": "^1.4.0",
     "typescript": "^5.9.2",
-    "vite": "^7.3.0",
-    "vite-tsconfig-paths": "^6.0.2"
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^6.0.3"
   }
 }
