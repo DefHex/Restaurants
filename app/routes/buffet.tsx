@@ -180,7 +180,7 @@ export default function Buffet() {
       </section>
 
       {/* Features Section */}
-      <section className="m-5 flex flex-col items-center gap-20 bg-zinc-950 ">
+      <section className="z-10 m-5 flex flex-col items-center gap-20 bg-zinc-950 ">
         <div className="w-96 h-14 container flex items-center justify-center bg-stone-800 rounded-lg ">
           <h1>Featured Food</h1>
         </div>
@@ -226,21 +226,21 @@ export default function Buffet() {
       </section>
 
       {/*  BUFFET SECTION */}
-      <section className="bg-linear-to-b pb-5 from-stone-200 to-orange-200 flex flex-col items-center relative">
+      <section className="max-h-[70vh] sm:max-h-[75vh] lg:max-h-screen bg-linear-to-b from-stone-200 to-orange-200 flex flex-col items-center relative">
         {/* Magnify (full space) */}
         {screenMode === 1 && <BuffetMagnifyView />}
 
         {/* Grid (scroll window) */}
         {screenMode === 2 && (
           <div
-            className="w-full overflow-y-auto overscroll-contain"
+            className="w-full px-3 overflow-y-auto overscroll-contain"
             style={{ height: "80vh" }}
           >
             <BuffetGridView />
           </div>
         )}
 
-        <div className="bottom-6 inset-x-0 pointer-events-auto">
+        <div className="absolute bottom-6 inset-x-0 pointer-events-auto">
           <div className="grid place-items-center">
             <LayoutSelector setScreenMode={setScreenMode} />
           </div>

@@ -3,7 +3,7 @@ import { buffetItems } from "./menuItems";
 
 export default function BuffetGridView() {
   return (
-    <div className="grid gap-3 auto-rows-[160px] m-5">
+    <div className="grid gap-3 auto-rows-[160px]">
       {buffetItems.map((item, index) => {
         const even = index % 2 === 0;
 
