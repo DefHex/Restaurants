@@ -153,7 +153,7 @@ export default function Buffet() {
           style={{ backgroundImage: `url(${buffetItems[19].path})` }}
         />
         {/* Hero Section */}
-        <div className="z-10 flex flex-col items-center gap-6 px-6 sm:px-8 ">
+        <div className="z-10 flex flex-col items-center gap-6 px-6 sm:px-8">
           <div
             ref={heroTitleRef}
             className="w-full max-w-xs sm:max-w-md md:max-w-xl
