@@ -226,7 +226,7 @@ export default function Buffet() {
       </section>
 
       {/*  BUFFET SECTION */}
-      <section className="bg-linear-to-b mb-5 from-stone-200 to-orange-200 flex flex-col items-center relative">
+      <section className="bg-linear-to-b pb-5 from-stone-200 to-orange-200 flex flex-col items-center relative">
         {/* Magnify (full space) */}
         {screenMode === 1 && <BuffetMagnifyView />}
 
