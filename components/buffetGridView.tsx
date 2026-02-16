@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { buffetItems } from "./menuItems";
 
 export default function BuffetGridView() {

@@ -153,17 +153,20 @@ export default function Buffet() {
           style={{ backgroundImage: `url(${buffetItems[19].path})` }}
         />
         {/* Hero Section */}
-        <div className="z-10 container w-full flex flex-col items-center gap-4 px-6 sm:px-8">
+        <div className="z-10 flex flex-col items-center gap-6 px-6 sm:px-8">
           <div
             ref={heroTitleRef}
-            className="w-60 sm:w-md md:w-136 lg:w-160 xl:w-180 2xl:w-300 h-12 sm:h-14 md:h-16 lg:h-18 xl:h-20 2xl:h-44
+            className="w-full max-w-xs sm:max-w-md md:max-w-xl
+                       h-16 sm:h-20 md:h-24
                        bg-linear-to-r from-stone-600 via-stone-500 to-stone-600
-                       rounded-lg 2xl:rounded-2xl opacity-0"
-          ></div>
+                       rounded-lg opacity-0"
+          />
+
           <div
             ref={heroSubtitleRef}
-            className="w-60 sm:w-md md:w-136 lg:w-160 xl:w-180 2xl:w-300 h-8 sm:h-12 md:h-12 lg:h-14 xl:h-15 2xl:h-36
-                       rounded-lg 2xl:rounded-2xl opacity-0 bg-stone-700 "
+            className=" w-full max-w-sm sm:max-w-md
+                        h-6 sm:h-8 md:h-10
+                      bg-stone-700 rounded opacity-0"
           />
 
           <div
