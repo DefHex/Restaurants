@@ -11,7 +11,7 @@ import { buffetItems } from "components/menuItems";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [{ title: "Buffet" }, { name: "description", content: "Buffet" }];
 }
 
@@ -171,23 +171,26 @@ export default function Buffet() {
 
           <div
             ref={heroButtonsRef}
-            className="flex flex-col sm:flex-row
+            className="w-60 sm:w-md md:w-136 lg:w-160 xl:w-180 2xl:w-300 h-20 sm:h-24 md:h-12 lg:h-14 xl:h-15 2xl:h-36
+                       flex flex-col sm:flex-row
                        gap-4 sm:gap-5
                        opacity-0"
           >
-            <div className="w-40 sm:w-44 h-12 sm:h-14 bg-stone-600 rounded-full" />
-            <div className="w-40 sm:w-44 h-12 sm:h-14 bg-transparent border-2 border-stone-100 rounded-full" />
+            <div className="flex-1 bg-stone-600 rounded-full" />
+            <div className="flex-1 bg-transparent border-2 border-stone-100 rounded-full" />
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="min-h-screen bg-zinc-950 py-32 px-16 flex flex-col items-center gap-20">
-        <div className="w-96 h-14 bg-stone-800 rounded-lg">Featured Dishes</div>
-        <div className="grid grid-cols-3 gap-10 w-full max-w-6xl">
+      <section className="z-10 m-5 flex flex-col items-center gap-20 bg-zinc-950 ">
+        <div className="w-96 h-14 container flex items-center justify-center bg-stone-800 rounded-lg ">
+          <h1>Featured Food</h1>
+        </div>
+        <div className="container grid grid-rows-3 md:grid-rows-1 md:grid-cols-3  gap-10">
           {features.map((feature, i) => (
             <div
-              key={i}
+              key={i + "buffetItem"}
               className="bg-stone-900 border border-stone-800 rounded-xl overflow-hidden"
             >
               {/* Image */}
@@ -226,21 +229,21 @@ export default function Buffet() {
       </section>
 
       {/*  BUFFET SECTION */}
-      <section className="min-h-screen bg-linear-to-b from-stone-200 to-orange-200 py-32 px-16 flex flex-col items-center relative pb-20">
+      <section className="max-h-[70vh] sm:max-h-[75vh] lg:max-h-screen bg-linear-to-b from-stone-200 to-orange-200 flex flex-col items-center relative">
         {/* Magnify (full space) */}
         {screenMode === 1 && <BuffetMagnifyView />}
 
         {/* Grid (scroll window) */}
         {screenMode === 2 && (
           <div
-            className="w-full overflow-y-auto overscroll-contain"
+            className="w-full px-3 overflow-y-auto overscroll-contain"
             style={{ height: "80vh" }}
           >
             <BuffetGridView />
           </div>
         )}
 
-        <div className="bottom-6 inset-x-0 pointer-events-auto">
+        <div className="absolute bottom-6 inset-x-0 pointer-events-auto">
           <div className="grid place-items-center">
             <LayoutSelector setScreenMode={setScreenMode} />
           </div>
