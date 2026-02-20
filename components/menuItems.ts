@@ -12,7 +12,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 1,
     name: "Bolognese",
-    path: "./bolognese.png",
+    path: "./bolognese.webp",
     selected: false,
     description:
       "Creamy pasta with rich tomato meat sauce and Parmesan cheese.",
@@ -22,7 +22,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 2,
     name: "Margherita Pizza",
-    path: "./margherita.png",
+    path: "./margherita.webp",
     selected: false,
     description: "Classic pizza with fresh mozzarella, tomatoes, and basil.",
     price: "€10.99",
@@ -31,7 +31,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 3,
     name: "Pasta",
-    path: "./pasta.png",
+    path: "./pasta.webp",
     selected: false,
     description: "Creamy pasta with egg, and Parmesan cheese.",
     price: "€11.99",
@@ -40,7 +40,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 4,
     name: "Cesar Salad",
-    path: "./cesar.png",
+    path: "./cesar.webp",
     selected: false,
     description:
       "Crisp romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.",
@@ -50,7 +50,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 5,
     name: "Cheesy pizza",
-    path: "./cheese.png",
+    path: "./cheese.webp",
     selected: false,
     description:
       "Classic cheese pizza with a blend of mozzarella and cheddar cheeses.",
@@ -60,7 +60,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 6,
     name: "Ice Cream",
-    path: "./ice-cream.png",
+    path: "./ice-cream.webp",
     selected: false,
     description: "Ice cream mix of flavors.",
     price: "€5.99",
@@ -69,7 +69,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 7,
     name: "Lasagna",
-    path: "./lasagna.png",
+    path: "./lasagna.webp",
     selected: false,
     description:
       "Delicious layers of pasta, meat, and cheese baked to perfection.",
@@ -79,7 +79,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 8,
     name: "Mozzarella",
-    path: "./mozzarella.png",
+    path: "./mozzarella.webp",
     selected: false,
     description: "Fresh mozzarella cheese served with tomatoes and basil.",
     price: "€7.99",
@@ -88,7 +88,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 9,
     name: "Mushroom pizza",
-    path: "./mushroom.png",
+    path: "./mushroom.webp",
     selected: false,
     description:
       "Savory mushroom pizza topped with a blend of cheeses and herbs.",
@@ -98,7 +98,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 10,
     name: "Salami pizza",
-    path: "./salami.png",
+    path: "./salami.webp",
     selected: false,
     description: "Spicy salami pizza with a crispy crust and melted cheese.",
     price: "€12.99",
@@ -107,7 +107,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 11,
     name: "Tiramisu",
-    path: "./tiramisu.png",
+    path: "./tiramisu.webp",
     selected: false,
     description:
       "Classic Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cheese.",
@@ -117,7 +117,7 @@ export const menuItems: MenuItemType[] = [
   {
     id: 12,
     name: "Vegetarian pizza",
-    path: "./veggie.png",
+    path: "./veggie.webp",
     selected: false,
     description:
       "Delicious vegetarian pizza topped with fresh vegetables and mozzarella cheese.",
@@ -130,7 +130,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 1,
     name: "Brat Wurst",
-    path: "./buffetItems/bratWurst.png",
+    path: "./buffetItems/bratWurst.webp",
     selected: false,
     description:
       "Traditional German bratwurst grilled to perfection, juicy and flavorful.",
@@ -140,7 +140,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 2,
     name: "Dumplings",
-    path: "./buffetItems/dumplings.png",
+    path: "./buffetItems/dumplings.webp",
     selected: false,
     description: "Soft and fluffy dumplings served as a classic comfort food.",
     price: "€5.99",
@@ -149,7 +149,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 3,
     name: "English Breakfast",
-    path: "./buffetItems/englishBreakFast.png",
+    path: "./buffetItems/englishBreakFast.webp",
     selected: false,
     description:
       "Hearty English breakfast with eggs, sausages, beans, and toast.",
@@ -159,7 +159,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 4,
     name: "Lasagna",
-    path: "./buffetItems/lasagna.png",
+    path: "./buffetItems/lasagna.webp",
     selected: false,
     description:
       "Layers of pasta, rich meat sauce, and creamy béchamel baked golden.",
@@ -169,7 +169,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 5,
     name: "Olivier Salad",
-    path: "./buffetItems/olivierSalad.png",
+    path: "./buffetItems/olivierSalad.webp",
     selected: false,
     description:
       "Classic Olivier salad with potatoes, vegetables, and creamy dressing.",
@@ -179,7 +179,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 6,
     name: "Penne Bolognese",
-    path: "./buffetItems/penneBolognese.png",
+    path: "./buffetItems/penneBolognese.webp",
     selected: false,
     description:
       "Penne pasta served with a rich and slow-cooked Bolognese sauce.",
@@ -189,7 +189,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 7,
     name: "Penne Pesto",
-    path: "./buffetItems/pennePesto.png",
+    path: "./buffetItems/pennePesto.webp",
     selected: false,
     description:
       "Penne pasta tossed in fresh basil pesto with olive oil and parmesan.",
@@ -199,7 +199,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 8,
     name: "Pizza Fungi",
-    path: "./buffetItems/pizzaFungi.png",
+    path: "./buffetItems/pizzaFungi.webp",
     selected: false,
     description:
       "Classic pizza topped with fresh mushrooms and melted mozzarella.",
@@ -209,7 +209,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 9,
     name: "Pizza Margarita",
-    path: "./buffetItems/pizzaMargarita.png",
+    path: "./buffetItems/pizzaMargarita.webp",
     selected: false,
     description:
       "Traditional Margherita pizza with tomato sauce, mozzarella, and basil.",
@@ -219,7 +219,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 10,
     name: "Pizza Salami",
-    path: "./buffetItems/pizzaSalami.png",
+    path: "./buffetItems/pizzaSalami.webp",
     selected: false,
     description: "Savory pizza topped with spicy salami and melted cheese.",
     price: "€9.49",
@@ -228,7 +228,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 11,
     name: "Poke Bowl Chicken",
-    path: "./buffetItems/pokeBowlChicken.png",
+    path: "./buffetItems/pokeBowlChicken.webp",
     selected: false,
     description:
       "Fresh poke bowl with marinated chicken, rice, and vegetables.",
@@ -238,7 +238,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 12,
     name: "Poke Bowl Thuna",
-    path: "./buffetItems/pokeBowlThuna.png",
+    path: "./buffetItems/pokeBowlThuna.webp",
     selected: false,
     description: "Light poke bowl with fresh tuna, rice, and sesame flavors.",
     price: "€10.49",
@@ -247,7 +247,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 13,
     name: "Roasted Salmon",
-    path: "./buffetItems/roastedSalmon.png",
+    path: "./buffetItems/roastedSalmon.webp",
     selected: false,
     description: "Oven-roasted salmon fillet with herbs and lemon.",
     price: "€11.99",
@@ -256,7 +256,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 14,
     name: "Salad",
-    path: "./buffetItems/salad.png",
+    path: "./buffetItems/salad.webp",
     selected: false,
     description:
       "Fresh mixed salad with seasonal vegetables and light dressing.",
@@ -266,7 +266,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 15,
     name: "Schnitzel",
-    path: "./buffetItems/schnitzel.png",
+    path: "./buffetItems/schnitzel.webp",
     selected: false,
     description: "Crispy breaded schnitzel fried until golden and tender.",
     price: "€10.99",
@@ -275,7 +275,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 16,
     name: "Schwarma",
-    path: "./buffetItems/schwarma.png",
+    path: "./buffetItems/schwarma.webp",
     selected: false,
     description: "Spiced shawarma-style meat served juicy and aromatic.",
     price: "€9.49",
@@ -284,7 +284,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 17,
     name: "Spaghetti Alassasina",
-    path: "./buffetItems/spagettiAlassasina.png",
+    path: "./buffetItems/spagettiAlassasina.webp",
     selected: false,
     description:
       "Spaghetti cooked directly in spicy tomato sauce for deep flavor.",
@@ -294,7 +294,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 18,
     name: "Steak",
-    path: "./buffetItems/steak2.png",
+    path: "./buffetItems/steak2.webp",
     selected: false,
     description: "Tender steak cut served with rich natural juices.",
     price: "€14.49",
@@ -303,7 +303,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 19,
     name: "Sushi",
-    path: "./buffetItems/sushi.png",
+    path: "./buffetItems/sushi.webp",
     selected: false,
     description: "Assorted sushi selection with fresh fish and rice.",
     price: "€12.99",
@@ -312,7 +312,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 21,
     name: "Tacos",
-    path: "./buffetItems/tacos.png",
+    path: "./buffetItems/tacos.webp",
     selected: false,
     description: "Mexican-style tacos filled with seasoned meat and toppings.",
     price: "€7.49",
@@ -321,7 +321,7 @@ export const buffetItems: MenuItemType[] = [
   {
     id: 22,
     name: "Tartar Soup",
-    path: "./buffetItems/tartarSoup.png",
+    path: "./buffetItems/tartarSoup.webp",
     selected: false,
     description: "Traditional hearty soup with rich spices and vegetables.",
     price: "€5.99",
