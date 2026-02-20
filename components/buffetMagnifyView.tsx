@@ -79,7 +79,7 @@ export default function BuffetMagnifyView() {
     const dy = Math.abs(delta.y) - (ry - cornerRadius);
     const outsideX = Math.max(dx, 0);
     const outsideY = Math.max(dy, 0);
-    const outsideD = Math.sqrt(outsideX ** 2 + outsideY ** 2);
+    const outsideD = Math.hypot(outsideX ,outsideY);
     const insideD = Math.min(Math.max(dx, dy), 0);
     const distance = outsideD + insideD;
 

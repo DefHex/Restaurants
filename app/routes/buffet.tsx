@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import type { Route } from "./+types/Home";
 import LayoutSelector from "components/layoutSelector";
 import BuffetMagnifyView from "components/buffetMagnifyView";
 import BuffetGridView from "components/buffetGridView";
@@ -11,7 +10,7 @@ import { buffetItems } from "components/menuItems";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [{ title: "Buffet" }, { name: "description", content: "Buffet" }];
 }
 
@@ -69,13 +68,13 @@ export default function Buffet() {
       onUpdate: (self) => {
         const y = self.scroll();
 
-        gsap.set(circle1Ref.current!, {
+        gsap.set(circle1Ref.current, {
           x: -y * 0.7,
           y: y * 0.25,
           rotation: y * 0.15,
         });
 
-        gsap.set(circle2Ref.current!, {
+        gsap.set(circle2Ref.current, {
           x: y * 0.9,
           y: -y * 0.2,
           rotation: -y * 0.4,
@@ -187,7 +186,7 @@ export default function Buffet() {
         <div className="grid grid-cols-3 gap-10 w-full max-w-6xl">
           {features.map((feature, i) => (
             <div
-              key={i}
+              key={i+"a"}
               className="bg-stone-900 border border-stone-800 rounded-xl overflow-hidden"
             >
               {/* Image */}

@@ -20,7 +20,7 @@ const menuItems = [
   {
     id: 1,
     name: "Apperol Spritz",
-    path: "./apperol.png",
+    path: "./apperol.webp",
     selected: false,
     description: "A refreshing cocktail with Aperol, prosecco, and soda water.",
     price: "€12.99",
@@ -28,7 +28,7 @@ const menuItems = [
   {
     id: 2,
     name: "Blueberry Spritz",
-    path: "./blueberry.png",
+    path: "./blueberry.webp",
     selected: false,
     description: "A fruity and refreshing blueberry spritz cocktail.",
     price: "€10.99",
@@ -36,7 +36,7 @@ const menuItems = [
   {
     id: 3,
     name: "Espresso Martini",
-    path: "./espresso-martini.png",
+    path: "./espresso-martini.webp",
     selected: false,
     description:
       "A classic cocktail made with espresso, vodka, and coffee liqueur.",
@@ -45,7 +45,7 @@ const menuItems = [
   {
     id: 4,
     name: "Lemonchello Spritz",
-    path: "./lemonchello.png",
+    path: "./lemonchello.webp",
     selected: false,
     description: "A zesty and refreshing lemonchello spritz cocktail.",
     price: "€10.99",
@@ -53,7 +53,7 @@ const menuItems = [
   {
     id: 5,
     name: "Mojito",
-    path: "./mojito.png",
+    path: "./mojito.webp",
     selected: false,
     description:
       "A classic cocktail made with rum, lime, mint, sugar, and soda water.",
@@ -106,7 +106,7 @@ export default function bar() {
     setIsDialogOpen(true);
   }
   return (
-    <div className="min-h-screen bg-cover bg-bottom bg-no-repeat bg-[url('/barBG.png')] ">
+    <div className="min-h-screen bg-cover bg-bottom bg-no-repeat bg-[url('/barBG.webp')] ">
       <div className=" mx-auto text-center">
         <h1 className="text-5xl font-bold mb-2 text-white font-serif shadow-lg p-8">
           Welcome to the Bar
