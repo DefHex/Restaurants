@@ -18,15 +18,9 @@ export default function BuffetGridView() {
               }
             `}
           >
-            <div></div>
-
             <div
-              className="
-                [grid-area:text]
-                col-span-2
-                rounded-3xl border border-white/20
-                p-6 flex flex-col items-center
-              "
+              className="[grid-area:text] col-span-2 flex flex-col items-center justify-center rounded-3xl 
+                         border border-amber-700 text-amber-700"
             >
               <h2 className="leading-relaxed">{item.name}</h2>
               <p className="text-sm leading-relaxed">{item.description}</p>
@@ -34,24 +28,15 @@ export default function BuffetGridView() {
             </div>
 
             <div
-              className="
-                flex items-center justify-center
-                w-full h-full
-                [grid-area:img]
-                rounded-3xl border border-white/20
-                overflow-hidden
-                p-2 sm:p-4 md:p-6
-              "
+              className="w-full h-full [grid-area:img] flex items-center justify-center overflow-hidden
+                            p-2 sm:p-4 md:p-6 rounded-3xl border border-white/20"
             >
               <img
                 src={item.path}
                 alt={item.name}
                 loading="lazy"
                 decoding="async"
-                className="
-                  w-full h-full object-cover
-                  sm:object-contain
-                "
+                className="w-full h-full object-cover sm:object-contain"
               />
             </div>
           </div>
