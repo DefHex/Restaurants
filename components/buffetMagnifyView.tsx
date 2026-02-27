@@ -20,7 +20,7 @@ const cols = window.innerWidth < 640 ? 3 : 5;
 const spacing = window.innerWidth < 640 ? 125 : 220;
 const baseSize = 100;
 
-export default function BuffetMagnifyView({ onItemClick }: Props) {
+export default function BuffetMagnifyView({ onItemClick }: Readonly<Props>) {
   const [origin, setOrigin] = useState<Point>({ x: 0, y: 0 });
   const [dragStartPoint, setDragStartPoint] = useState<Point>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);

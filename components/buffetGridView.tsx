@@ -6,7 +6,7 @@ type Props = {
   onItemClick?: (item: BuffetItem) => void;
 };
 
-export default function BuffetGridView({ onItemClick }: Props) {
+export default function BuffetGridView({ onItemClick }: Readonly<Props>) {
   return (
     <div className="grid gap-3 auto-rows-[160px]">
       {buffetItems.map((item, index) => {
