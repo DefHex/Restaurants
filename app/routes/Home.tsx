@@ -13,7 +13,7 @@ export default function Home() {
   let navigate = useNavigate();
   return (
     <div className="min-h-screen flex flex-col justify-center pt-16 p-4 mx-auto dark:text-white dark:bg-black">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <CardContainer>
           <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/5 border-black/10 w-auto sm:w-120 h-auto rounded-xl p-6 border  ">
             <CardItem
@@ -93,7 +93,7 @@ export default function Home() {
         </CardContainer>
 
         <CardContainer>
-          <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl ddark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/5 border-black/10 w-auto sm:w-120 h-auto rounded-xl p-6 border  ">
+          <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/10 dark:bg-black dark:border-white/5 border-black/10 w-auto sm:w-120 h-auto rounded-xl p-6 border  ">
             <CardItem
               translateZ="50"
               className="text-xl font-bold text-neutral-600 dark:text-white"
