@@ -8,14 +8,41 @@ import BuffetMagnifyView from "components/buffetMagnifyView";
 import BuffetGridView from "components/buffetGridView";
 import { buffetItems } from "components/menuItems";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "components/animate-ui/components/radix/dialog";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export function meta() {
   return [{ title: "Buffet" }, { name: "description", content: "Buffet" }];
 }
 
+// Type for a buffet item — adjust fields to match your actual menuItems shape
+type BuffetItem = {
+  path: string;
+  name?: string;
+  price?: string;
+  description?: string;
+  // add any other fields your items have (calories, tags, etc.)
+};
+
 export default function Buffet() {
   const [screenMode, setScreenMode] = useState<number>(1);
+
+  // Dialog state
+  const [selectedItem, setSelectedItem] = useState<BuffetItem | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const openDialog = (item: BuffetItem) => {
+    setSelectedItem(item);
+    setDialogOpen(true);
+  };
 
   const heroTitleRef = useRef<HTMLDivElement>(null);
   const heroSubtitleRef = useRef<HTMLDivElement>(null);
@@ -29,7 +56,7 @@ export default function Buffet() {
   const layer2Ref = useRef<HTMLDivElement>(null);
   const layer3Ref = useRef<HTMLDivElement>(null);
 
-  // for animating the hero section
+  // Hero fade-in animation
   useGSAP(() => {
     if (
       !heroTitleRef.current ||
@@ -42,22 +69,23 @@ export default function Buffet() {
       .fromTo(
         heroTitleRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 1, ease: "power2.out" }
+        { opacity: 1, duration: 1, ease: "power2.out" },
       )
       .fromTo(
         heroSubtitleRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 0.8, ease: "power2.out" },
-        ">0"
+        ">0",
       )
       .fromTo(
         heroButtonsRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 0.8, ease: "power2.out" },
-        ">0"
+        ">0",
       );
   });
-  // for animating the hero section
+
+  // Parallax circles on scroll
   useGSAP(() => {
     if (!circle1Ref.current || !circle2Ref.current) return;
 
@@ -67,13 +95,11 @@ export default function Buffet() {
       end: "max",
       onUpdate: (self) => {
         const y = self.scroll();
-
         gsap.set(circle1Ref.current, {
           x: -y * 0.7,
           y: y * 0.25,
           rotation: y * 0.15,
         });
-
         gsap.set(circle2Ref.current, {
           x: y * 0.9,
           y: -y * 0.2,
@@ -83,7 +109,8 @@ export default function Buffet() {
     });
     return () => st.kill();
   });
-  // for  animating footer section
+
+  // Footer parallax layers
   useGSAP(() => {
     if (!layer1Ref.current || !layer2Ref.current || !layer3Ref.current) return;
     gsap.to(layer1Ref.current, {
@@ -96,7 +123,6 @@ export default function Buffet() {
         scrub: true,
       },
     });
-
     gsap.to(layer2Ref.current, {
       y: -300,
       ease: "none",
@@ -107,7 +133,6 @@ export default function Buffet() {
         scrub: true,
       },
     });
-
     gsap.to(layer3Ref.current, {
       y: -80,
       rotation: 40,
@@ -120,10 +145,63 @@ export default function Buffet() {
       },
     });
   });
+
   return (
     <div className="min-h-screen overflow-hidden bg-zinc-950 text-stone-100">
-      {/* Nav bar */}
-      <nav className="fixed w-full h-20 top-0 z-50 flex items-center justify-center bg-stone-900/90 border-b border-stone-800 ">
+      {/* ── Item Detail Dialog ── */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent
+          className="bg-zinc-900 border border-stone-700 text-stone-100 max-w-md overflow-hidden p-0"
+          showCloseButton
+        >
+          {selectedItem && (
+            <>
+              {/* Hero image */}
+              <div className="w-full max-h-96 overflow-hidden">
+                <img
+                  src={selectedItem.path}
+                  alt={selectedItem.name ?? "Buffet item"}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-6 flex flex-col gap-4">
+                <DialogHeader>
+                  <div className="flex items-start justify-between gap-4">
+                    <DialogTitle className="text-xl font-bold text-stone-100">
+                      {selectedItem.name ?? "Unnamed item"}
+                    </DialogTitle>
+                    {selectedItem.price && (
+                      <span className="text-amber-400 font-semibold text-base whitespace-nowrap">
+                        {selectedItem.price}
+                      </span>
+                    )}
+                  </div>
+
+                  {selectedItem.description && (
+                    <DialogDescription className="text-stone-300 text-sm leading-relaxed mt-1">
+                      {selectedItem.description}
+                    </DialogDescription>
+                  )}
+                </DialogHeader>
+
+                <DialogFooter>
+                  <button
+                    onClick={() => setDialogOpen(false)}
+                    className="w-full py-2.5 bg-amber-700 hover:bg-amber-600 transition-colors rounded-lg text-sm font-semibold"
+                  >
+                    Close
+                  </button>
+                </DialogFooter>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* ── Nav bar ── */}
+      <nav className="fixed w-full h-20 top-0 z-50 flex items-center justify-center bg-stone-900/90 border-b border-stone-800">
         <div className="flex gap-5 sm:gap-8 md:gap-10 lg:12 xl:15 2xl:18">
           <div className="w-20 h-8 bg-stone-800 rounded" />
           <div className="w-20 h-8 bg-stone-800 rounded" />
@@ -131,49 +209,36 @@ export default function Buffet() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* ── Hero Section ── */}
       <section className="relative h-screen overflow-hidden flex flex-col justify-center items-center bg-linear-to-br from-stone-900 to-amber-950">
-        {/* Circle on the top right*/}
         <div
           ref={circle1Ref}
-          className=" absolute w-33 h-33 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-66 lg:h-66 xl:w-75 xl:h-75 2xl:w-85 2xl:h-85
-                      top-16 -right-10 sm:top-14 sm:-right-20 md:top-12 md:-right-24 lg:top-8 lg:-right-32 xl:top-4 xl:-right-36 2xl:top-0 2xl:-right-40
-                      z-0
-                      bg-center bg-cover bg-no-repeat"
+          className="absolute w-33 h-33 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-66 lg:h-66 xl:w-75 xl:h-75 2xl:w-85 2xl:h-85
+                     top-16 -right-10 sm:top-14 sm:-right-20 md:top-12 md:-right-24 lg:top-8 lg:-right-32 xl:top-4 xl:-right-36 2xl:top-0 2xl:-right-40
+                     z-0 bg-center bg-cover bg-no-repeat"
           style={{ backgroundImage: `url(${buffetItems[17].path})` }}
         />
-        {/* Circle on the bottom left */}
         <div
           ref={circle2Ref}
-          className=" absolute w-40 h-40 sm:w-50 sm:h-50 md:w-60 md:h-60 lg:w-70 lg:h-70 xl:w-75 xl:h-75 2xl:w-85 2xl:h-85
-                      bottom-0 -left-10 sm:-left-8  md:-left-12 lg:-left-16 xl:-left-20 2xl:-left-24
-                      z-0
-                      bg-center bg-cover bg-no-repeat"
+          className="absolute w-40 h-40 sm:w-50 sm:h-50 md:w-60 md:h-60 lg:w-70 lg:h-70 xl:w-75 xl:h-75 2xl:w-85 2xl:h-85
+                     bottom-0 -left-10 sm:-left-8 md:-left-12 lg:-left-16 xl:-left-20 2xl:-left-24
+                     z-0 bg-center bg-cover bg-no-repeat"
           style={{ backgroundImage: `url(${buffetItems[19].path})` }}
         />
-        {/* Hero Section */}
         <div className="z-10 flex flex-col items-center gap-6 px-6 sm:px-8">
           <div
             ref={heroTitleRef}
-            className="w-full max-w-xs sm:max-w-md md:max-w-xl
-                       h-16 sm:h-20 md:h-24
-                       bg-linear-to-r from-stone-600 via-stone-500 to-stone-600
-                       rounded-lg opacity-0"
+            className="w-full max-w-xs sm:max-w-md md:max-w-xl h-16 sm:h-20 md:h-24
+                       bg-linear-to-r from-stone-600 via-stone-500 to-stone-600 rounded-lg opacity-0"
           />
-
           <div
             ref={heroSubtitleRef}
-            className=" w-full max-w-sm sm:max-w-md
-                        h-6 sm:h-8 md:h-10
-                      bg-stone-700 rounded opacity-0"
+            className="w-full max-w-sm sm:max-w-md h-6 sm:h-8 md:h-10 bg-stone-700 rounded opacity-0"
           />
-
           <div
             ref={heroButtonsRef}
             className="w-60 sm:w-md md:w-136 lg:w-160 xl:w-180 2xl:w-300 h-20 sm:h-24 md:h-12 lg:h-14 xl:h-15 2xl:h-36
-                       flex flex-col sm:flex-row
-                       gap-4 sm:gap-5
-                       opacity-0"
+                       flex flex-col sm:flex-row gap-4 sm:gap-5 opacity-0"
           >
             <div className="flex-1 bg-stone-600 rounded-full" />
             <div className="flex-1 bg-transparent border-2 border-stone-100 rounded-full" />
@@ -181,16 +246,18 @@ export default function Buffet() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="z-10 m-5 flex flex-col items-center gap-20 bg-zinc-950 ">
-        <div className="w-96 h-14 container flex items-center justify-center bg-stone-800 rounded-lg ">
+      {/* ── Features Section ── */}
+      <section className="z-10 m-5 flex flex-col items-center gap-20 bg-zinc-950">
+        <div className="w-96 h-14 container flex items-center justify-center bg-stone-800 rounded-lg">
           <h1>Featured Food</h1>
         </div>
-        <div className="container grid grid-rows-3 md:grid-rows-1 md:grid-cols-3  gap-10">
+        <div className="container grid grid-rows-3 md:grid-rows-1 md:grid-cols-3 gap-10">
           {features.map((feature, i) => (
             <div
               key={i + "buffetItem"}
-              className="bg-stone-900 border border-stone-800 rounded-xl overflow-hidden"
+              className="text-left bg-stone-900 border border-stone-800 rounded-xl overflow-hidden
+                         hover:border-amber-700 hover:shadow-lg hover:shadow-amber-950/40
+                         transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-600"
             >
               {/* Image */}
               <div className="w-full">
@@ -208,16 +275,14 @@ export default function Buffet() {
                   <h3 className="text-lg font-semibold leading-tight">
                     {feature.name ?? "Unnamed item"}
                   </h3>
-
                   {feature.price && (
-                    <span className="text-sm text-stone-200 whitespace-nowrap">
+                    <span className="text-amber-400 font-semibold text-base whitespace-nowrap">
                       {feature.price}
                     </span>
                   )}
                 </div>
-
                 {feature.description && (
-                  <p className="text-sm text-stone-300">
+                  <p className="text-sm text-stone-300 line-clamp-2">
                     {feature.description}
                   </p>
                 )}
@@ -227,21 +292,17 @@ export default function Buffet() {
         </div>
       </section>
 
-      {/*  BUFFET SECTION */}
+      {/* ── Buffet Section ── */}
       <section className="max-h-[70vh] sm:max-h-[75vh] lg:max-h-screen bg-linear-to-b from-stone-200 to-orange-200 flex flex-col items-center relative">
-        {/* Magnify (full space) */}
-        {screenMode === 1 && <BuffetMagnifyView />}
-
-        {/* Grid (scroll window) */}
+        {screenMode === 1 && <BuffetMagnifyView onItemClick={openDialog} />}
         {screenMode === 2 && (
           <div
             className="w-full px-3 overflow-y-auto overscroll-contain"
             style={{ height: "80vh" }}
           >
-            <BuffetGridView />
+            <BuffetGridView onItemClick={openDialog} />
           </div>
         )}
-
         <div className="absolute bottom-6 inset-x-0 pointer-events-auto">
           <div className="grid place-items-center">
             <LayoutSelector setScreenMode={setScreenMode} />
@@ -249,7 +310,7 @@ export default function Buffet() {
         </div>
       </section>
 
-      {/* Footer Section */}
+      {/* ── Footer Section ── */}
       <section className="h-[60vh] bg-amber-950 flex justify-center items-center relative overflow-hidden">
         <div
           ref={layer1Ref}
@@ -269,7 +330,7 @@ export default function Buffet() {
         <div className="w-125 h-20 bg-stone-600/80 rounded-lg z-10" />
       </section>
 
-      {/* Footer */}
+      {/* ── Footer ── */}
       <footer className="h-24 bg-stone-950 border-t border-stone-800 flex justify-center items-center">
         <div className="w-72 h-5 bg-stone-800 rounded" />
       </footer>
