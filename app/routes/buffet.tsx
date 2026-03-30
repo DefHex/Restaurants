@@ -47,8 +47,6 @@ export default function Buffet() {
   const heroTitleRef = useRef<HTMLDivElement>(null);
   const heroSubtitleRef = useRef<HTMLDivElement>(null);
   const heroButtonsRef = useRef<HTMLDivElement>(null);
-  const circle1Ref = useRef<HTMLDivElement>(null);
-  const circle2Ref = useRef<HTMLDivElement>(null);
 
   const features = [1, 4, 12].map((i) => buffetItems[i]);
 
@@ -84,32 +82,6 @@ export default function Buffet() {
         ">0",
       );
   });
-
-  // Parallax circles on scroll
-  useGSAP(() => {
-    if (!circle1Ref.current || !circle2Ref.current) return;
-
-    const st = ScrollTrigger.create({
-      trigger: document.documentElement,
-      start: 0,
-      end: "max",
-      onUpdate: (self) => {
-        const y = self.scroll();
-        gsap.set(circle1Ref.current, {
-          x: -y * 0.7,
-          y: y * 0.25,
-          rotation: y * 0.15,
-        });
-        gsap.set(circle2Ref.current, {
-          x: y * 0.9,
-          y: -y * 0.2,
-          rotation: -y * 0.4,
-        });
-      },
-    });
-    return () => st.kill();
-  });
-
   // Footer parallax layers
   useGSAP(() => {
     if (!layer1Ref.current || !layer2Ref.current || !layer3Ref.current) return;
@@ -210,31 +182,36 @@ export default function Buffet() {
       </nav>
 
       {/* ── Hero Section ── */}
-      <section className="relative h-screen overflow-hidden flex flex-col justify-center items-center bg-linear-to-br from-stone-900 to-amber-950">
-        <div
-          ref={circle1Ref}
-          className="absolute w-33 h-33 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-66 lg:h-66 xl:w-75 xl:h-75 2xl:w-85 2xl:h-85
-                     top-16 -right-10 sm:top-14 sm:-right-20 md:top-12 md:-right-24 lg:top-8 lg:-right-32 xl:top-4 xl:-right-36 2xl:top-0 2xl:-right-40
-                     z-0 bg-center bg-cover bg-no-repeat"
-          style={{ backgroundImage: `url(${buffetItems[17].path})` }}
-        />
-        <div
-          ref={circle2Ref}
-          className="absolute w-40 h-40 sm:w-50 sm:h-50 md:w-60 md:h-60 lg:w-70 lg:h-70 xl:w-75 xl:h-75 2xl:w-85 2xl:h-85
-                     bottom-0 -left-10 sm:-left-8 md:-left-12 lg:-left-16 xl:-left-20 2xl:-left-24
-                     z-0 bg-center bg-cover bg-no-repeat"
-          style={{ backgroundImage: `url(${buffetItems[19].path})` }}
-        />
+      <section className="relative h-screen overflow-hidden flex flex-col justify-center items-center ">
         <div className="z-10 flex flex-col items-center gap-6 px-6 sm:px-8">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-1/2 left-1/2 w-auto min-w-full min-h-full max-w-none -translate-x-1/2 -translate-y-1/2 object-cover opacity-50 z-0"
+          >
+            <source src="bgvid.webm" type="video/webm" />
+          </video>
           <div
             ref={heroTitleRef}
             className="w-full max-w-xs sm:max-w-md md:max-w-xl h-16 sm:h-20 md:h-24
                        bg-linear-to-r from-stone-600 via-stone-500 to-stone-600 rounded-lg opacity-0"
-          />
-          <div
-            ref={heroSubtitleRef}
-            className="w-full max-w-sm sm:max-w-md h-6 sm:h-8 md:h-10 bg-stone-700 rounded opacity-0"
-          />
+          >
+            <h1
+              ref={heroTitleRef}
+              className="text-center text-lg sm:text-2xl md:text-4xl font-bold text-stone-100"
+            >
+              Artistry
+            </h1>
+            <h1
+              ref={heroSubtitleRef}
+              className="text-center text-lg sm:text-2xl md:text-4xl font-bold text-orange-600"
+            >
+              on a plate
+            </h1>
+          </div>
+          <div className="w-full max-w-sm sm:max-w-md h-6 sm:h-8 md:h-10 bg-stone-700 rounded opacity-0" />
           <div
             ref={heroButtonsRef}
             className="w-60 sm:w-md md:w-136 lg:w-160 xl:w-180 2xl:w-300 h-20 sm:h-24 md:h-12 lg:h-14 xl:h-15 2xl:h-36
@@ -247,11 +224,11 @@ export default function Buffet() {
       </section>
 
       {/* ── Features Section ── */}
-      <section className="z-10 m-5 flex flex-col items-center gap-20 bg-zinc-950">
+      <section className="relative z-10 m-5 flex flex-col items-center gap-20 bg-zinc-950 overflow-hidden">
         <div className="w-96 h-14 container flex items-center justify-center bg-stone-800 rounded-lg">
           <h1>Featured Food</h1>
         </div>
-        <div className="container grid grid-rows-3 md:grid-rows-1 md:grid-cols-3 gap-10">
+        <div className="container grid grid-rows-3 md:grid-rows-1 md:grid-cols-3 gap-10 z-30">
           {features.map((feature, i) => (
             <div
               key={i + "buffetItem"}
